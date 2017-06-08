@@ -8,4 +8,81 @@
 	<artifactId>semantic-ui-less-theme</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
+	<properties>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<frontend-maven-plugin.version>1.4</frontend-maven-plugin.version>
+		<frontend-maven-plugin.nodeVersion>v7.4.0</frontend-maven-plugin.nodeVersion>
+		<jetty.version>9.4.5.v20170502</jetty.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>${sourceDirectory}</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>${frontend-maven-plugin.version}</version>
+				<configuration>
+					<installDirectory>target/node-install</installDirectory>
+					<workingDirectory>target/classes/webContent</workingDirectory>
+					<nodeVersion>${frontend-maven-plugin.nodeVersion}</nodeVersion>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<phase>generate-resources</phase>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+					<execution>
+						<id>npm prebuild</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>run prebuild</arguments>
+						</configuration>
+						<phase>compile</phase>
+					</execution>
+					<execution>
+						<id>webpack build</id>
+						<goals>
+							<goal>webpack</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<webAppSourceDirectory>${project.basedir}/target/classes/webContent</webAppSourceDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

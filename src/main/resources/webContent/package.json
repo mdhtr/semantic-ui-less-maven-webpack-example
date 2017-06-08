@@ -1,0 +1,22 @@
+{
+  "name": "learning_javascript",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "prebuild": "node fix-semantic-ui.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "jquery": "^3.2.1",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.3",
+    "postcss-loader": "^2.0.5",
+    "semantic-ui-less": "^2.2.10",
+    "url-loader": "^0.5.8",
+    "webpack": "2.2.1"
+  }
+}
