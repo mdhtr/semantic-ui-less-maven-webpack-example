@@ -10,7 +10,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract('css-loader!postcss-loader!less-loader')
+                loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss-loader?sourceMap!less-loader?sourceMap')
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -25,5 +25,6 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([{from: './src/static', to: './dist'}]),
         new ExtractTextPlugin('./dist/style.css')
-    ]
+    ],
+    devtool: '#source-map'
 };
