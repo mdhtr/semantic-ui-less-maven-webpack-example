@@ -30,8 +30,7 @@ public class FileServer {
 		
 		resourceHandler.setDirectoriesListed(true);
 		resourceHandler.setWelcomeFiles(new String[]{"index.html"});
-		resourceHandler.setResourceBase(".");
-//		resourceHandler.setDirectoriesListed(true);
+		resourceHandler.setResourceBase("./target/classes");
 		
 		DefaultHandler defaultHandler = new DefaultHandler();
 		

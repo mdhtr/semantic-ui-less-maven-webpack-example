@@ -1,9 +1,11 @@
 var fs = require('fs');
 
+var SOURCE_FOLDER = 'src/main/webpack';
+
 // relocate default config
 fs.writeFileSync(
     'node_modules/semantic-ui-less/theme.config',
-    "@import '../../src/semantic/theme.config';\n",
+    "@import '../../" + SOURCE_FOLDER + "/semantic/theme.config';\n",
     'utf8'
 );
 

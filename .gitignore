@@ -35,6 +35,7 @@ result
 
 # NODE JS
 node_modules
+node
 dist
 logs
 *.log
